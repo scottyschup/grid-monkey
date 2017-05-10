@@ -45,5 +45,9 @@ body > .content {
   width: 100% !important;
   height: 100% !important;
   transform: scale(1) !important;
-  z-index: 10;
+  z-index: 1;
+}
+
+.transitioning {
+  z-index: 2 !important;
 }

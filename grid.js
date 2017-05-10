@@ -11,19 +11,26 @@
     };
   }
 
-  var numGrids = $(".grid-container").children('.content').length;
+  var numGrids = $(".grid-container").children(".content").length;
   $(".grid-container").each(function (i, grid) {
     $(grid).css(divStyle(i, numGrids));
     $(grid).click(function (ev) {
-      $(ev.currentTarget).toggleClass('focus');
+      ev.stopPropagation();
+      $(ev.currentTarget).addClass("transitioning").toggleClass("focus");
+      window.setTimeout(function () {
+        $(ev.currentTarget).removeClass("transitioning");
+      }, 300);
     });
-    var content = $(grid).children('.content')[0];
-    var numCells = $(content).children('.cell').length;
-    $(content).children('.cell').each(function (j, cell) {
+    var content = $(grid).children(".content")[0];
+    var numCells = $(content).children(".cell").length;
+    $(content).children(".cell").each(function (j, cell) {
       $(cell).css(divStyle(j, numCells));
       $(cell).click(function (ev) {
         ev.stopPropagation();
-        $(ev.currentTarget).toggleClass('focus');
+        $(ev.currentTarget).addClass("transitioning").toggleClass("focus");
+        window.setTimeout(function () {
+          $(ev.currentTarget).removeClass("transitioning");
+        }, 300);
       });
     });
   });
